@@ -1,71 +1,51 @@
-import React, { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { startAsync, makeRedirectUri } from 'expo-auth-session';
+import { SafeAreaView, Text } from 'react-native';
+import { Button } from 'react-native-elements';
+import { useTailwind } from 'tailwind-rn';
+
 import { supabase } from '../lib/supabase';
-import { Button, Input } from 'react-native-elements';
+import { supabaseUrl } from '../lib/supabase-keys';
 
 export default function Auth() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState('');
+  const tailwind = useTailwind();
 
-  async function signInWithEmail() {
-    const { user, error } = await supabase.auth.signIn({
-      email: email,
-      password: password
-    });
-  }
+  const signInWithApple = async () => {
+    const returnUrl = makeRedirectUri({ useProxy: false });
+    const provider = 'apple';
+    const authUrl = `${supabaseUrl}/auth/v1/authorize?provider=${provider}&redirect_to=${returnUrl}`;
 
-  async function signUpWithEmail() {
-    const { user, error } = await supabase.auth.signUp({
-      email: email,
-      password: password
+    const response = await startAsync({ authUrl, returnUrl });
+
+    if (!response || !response.params?.refresh_token) {
+      return;
+    }
+
+    await supabase.auth.signIn({
+      refreshToken: response.params.refresh_token
     });
-  }
+  };
 
   return (
-    <View>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Input
-          label="Email"
-          leftIcon={{ type: 'font-awesome', name: 'envelope' }}
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          placeholder="email@address.com"
-          autoCapitalize={'none'}
-        />
-      </View>
-      <View style={styles.verticallySpaced}>
-        <Input
-          label="Password"
-          leftIcon={{ type: 'font-awesome', name: 'lock' }}
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          secureTextEntry={true}
-          placeholder="Password"
-          autoCapitalize={'none'}
-        />
-      </View>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" onPress={() => signInWithEmail()} />
-      </View>
-      <View style={styles.verticallySpaced}>
-        <Button title="Sign up" onPress={() => signUpWithEmail()} />
-      </View>
-    </View>
+    <SafeAreaView style={tailwind('w-full h-full flex items-center justify-center')}>
+      <Text style={tailwind('text-4xl font-black text-center mb-16')}>
+        Supabase Tailwind Starter
+      </Text>
+
+      <Button
+        icon={<Ionicons name="logo-apple" size={18} color="white" style={{ marginRight: 4 }} />}
+        title="Sign in with Apple"
+        onPress={() => signInWithApple()}
+        buttonStyle={{
+          backgroundColor: 'black',
+          borderRadius: 20
+        }}
+        containerStyle={{
+          width: 300,
+          marginHorizontal: 50,
+          marginVertical: 10
+        }}
+      />
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 12
-  },
-  verticallySpaced: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignSelf: 'stretch'
-  },
-  mt20: {
-    marginTop: 20
-  }
-});

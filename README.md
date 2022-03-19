@@ -25,3 +25,12 @@ A simple React Native Apple OAuth starter built with [Supabase](https://github.c
 
 - Ensure the Site URL in Supabase > Settings > Authentication is set to your Expo local URL. For example, `exp://192.168.0.158:19000`.
 - Ensure the domain in Certificates, Identifiers & Profiles > Identifiers > Services IDs > Sign in with Apple > Configure is set to `supabase-project-id.supabase.co` without a leading https:// in the Service ID Identifier for Apple and the return URL is set to `https://supabase-project-id.supabase.co/auth/v1/callback`
+- The tailwind class not found warning can safely be ignored
+
+## Contributing
+
+Pull requests are welcome if they improve upon the current code and do not add new features/dependencies.
+
+## License
+
+MIT.

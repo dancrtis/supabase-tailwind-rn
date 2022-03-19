@@ -1,6 +1,6 @@
 # supabase-tailwind-rn
 
-An Apple OAuth, Expo application starter built on [Supabase](https://github.com/supabase/supabase) and styled with [Tailwind RN](https://github.com/vadimdemedes/tailwind-rn/).
+A simple React Native Apple OAuth starter built with [Supabase](https://github.com/supabase/supabase) and [Tailwind RN](https://github.com/vadimdemedes/tailwind-rn/).
 
 ![demo of Apple Oauth](assets/oauth.gif)
 

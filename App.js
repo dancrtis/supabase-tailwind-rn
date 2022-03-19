@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { View } from 'react-native';
+import { TailwindProvider } from 'tailwind-rn';
 
+import utilities from './tailwind.json';
 import { supabase } from './lib/supabase';
 import Auth from './components/auth';
 import Account from './components/account';
@@ -17,8 +19,8 @@ export default function App() {
   }, []);
 
   return (
-    <View className="container">
-      {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-    </View>
+    <TailwindProvider utilities={utilities}>
+      <View>{!session ? <Auth /> : <Account key={session.user.id} session={session} />}</View>
+    </TailwindProvider>
   );
 }

@@ -1,17 +1,26 @@
 {
   "name": "supabase-tailwind-rn",
   "version": "1.0.0",
+  "author": {
+    "name": "Dan Curtis",
+    "url": "https://github.com/danielcurtis"
+  },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
+    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\""
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@supabase/supabase-js": "^1.31.1",
     "expo": "~44.0.0",
+    "expo-auth-session": "~3.5.0",
+    "expo-random": "~12.1.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -19,10 +28,13 @@
     "react-native-elements": "^3.4.2",
     "react-native-safe-area-context": "^4.2.1",
     "react-native-web": "0.17.1",
-    "@react-native-async-storage/async-storage": "~1.15.0"
+    "tailwind-rn": "^4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "concurrently": "^7.0.0",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23"
   },
-  "private": true
+  "private": false
 }

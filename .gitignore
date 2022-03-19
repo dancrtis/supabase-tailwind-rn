@@ -12,3 +12,10 @@ web-build/
 
 # macOS
 .DS_Store
+
+# apple oauth
+scripts/client_secret.txt
+scripts/**.p8
+
+# supabase
+lib/supabase-keys.js

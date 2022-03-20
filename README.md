@@ -13,7 +13,7 @@ A simple React Native Apple OAuth starter built with [Supabase](https://github.c
 
 ## Quick start
 
-1. Clone the repo `git clone https://github.com/danielcurtis/supabase-tailwind-rn.git`
+1. Clone the repo or use the template button
 2. Install dependencies `npm install`
 3. Set up Supabase and Apple OAuth https://supabase.com/docs/guides/auth/auth-apple
 4. Rename `/lib/supabase-keys-example.js` to `/lib/supabase-keys.js` and add your keys from the Supabase dashboard in Settings > API. _Don't store keys like this in prod!_

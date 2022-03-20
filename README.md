@@ -4,6 +4,8 @@ A simple React Native Apple OAuth starter built with [Supabase](https://github.c
 
 ![demo of Apple Oauth](assets/oauth.gif)
 
+[How to use Supbase Apple OAuth in React Native](https://dev.to/dancurtis/how-to-use-supabase-apple-oauth-in-react-native-4c4h)
+
 ## Prerequisites
 
 - Apple Developer Account
@@ -33,4 +35,4 @@ Pull requests are welcome if they improve upon the current code and do not add n
 
 ## License
 
-MIT.
+MIT
